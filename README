@@ -1,0 +1,3 @@
+BASH and PHP scripts for using CloudFlare as a Dynamic DNS provider.
+More info at http://www.mattfreitag.com/2014/01/08/cloudflare-dynamic-dns-bashphp-script/
+If you don't have web hosting to run the PHP, feel free to only take the BASH script for your client
