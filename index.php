@@ -12,7 +12,7 @@
 			
 			case 1: // if option 1 was selected...
 				$file = file_get_contents($_FILES["file"]["tmp_name"]); // put the contents of the uploaded file in the $file variable
-				if(isset($_POST["host"]) { // if "host" was posted, put it in the variable $needle
+				if(isset($_POST["host"])) { // if "host" was posted, put it in the variable $needle
 					$needle = $_POST["host"];
 				}
 				else { //if it wasn't set the response code to 400 and echo it back to the client
