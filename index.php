@@ -31,7 +31,7 @@
 			case 2:
 				$file = file_get_contents($_FILES["file"]["tmp_name"]);
 				$haystack = json_decode($file, true);
-				echo $haystack . "\n";
+				echo $haystack["response"]["rec"]["obj"]["rec_id"];
 				break;
 			
 			default: // if the option selected wasn't listed above, set the response code to 400 and echo it back to the client
