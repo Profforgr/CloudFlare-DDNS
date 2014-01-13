@@ -12,13 +12,7 @@
 			
 			case 1: // if option 1 was selected...
 				$file = file_get_contents($_FILES["file"]["tmp_name"]); // put the contents of the uploaded file in the $file variable
-				if(isset($_POST["host"])) { // if "host" was posted, put it in the variable $needle
-					$needle = $_POST["host"];
-				}
-				else { //if it wasn't set the response code to 400 and echo it back to the client
-					http_response_code(400);
-					echo "400 Bad Request, missing host parameter in POST";
-				}
+				$needle = $_POST["host"]; // the $needle I'm looking for is the POSTed host
 				$haystack = json_decode($file, true); // decode the JSON into an array called $haystack
 				$count = $haystack['response']['recs']['count']; // get the number of records from the haystack
 				$i = 0; // start the counter $i at 0
@@ -27,21 +21,24 @@
 						$rec_id = $haystack['response']['recs']['objs'][$i]['rec_id']; // if found, get the 'rec_id', call it $rec_id and quit the loop
 						break;
 					}
-					else { // if not found, increment $i
+					else { // if not found, increment $i by 1
 						$i++;
 					}
 				}
-				echo $rec_id; // send back the $rec_id and quit
+				echo $rec_id; // send the $rec_id back to the client
 				break;
 
+			case 2:
+				$file = file_get_contents($_FILES["file"]["tmp_name"]);
+			
 			default: // if the option selected wasn't listed above, set the response code to 400 and echo it back to the client
-				http_response_code(400);
-				echo "400 Bad Request, invalid option set";
+				header("HTTP/1.1 400 Bad Request", true, 400);
+				echo "Bad Response, Invalid Option Set";
 		}
 	}
 
 	else { // if the option wasn't POSTed, set the response code to 400 and echo it back to the client
-		http_response_code(400);
-		echo "400 Bad Request, no option set";
+		header("HTTP/1.1 400 Bad Request", true, 400);
+		echo "Bad Response, No Option Set";
 	}
 ?>
