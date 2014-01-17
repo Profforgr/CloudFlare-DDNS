@@ -31,7 +31,7 @@ if [ "$MYIP" == "$CFIP" ]; then
 elif [ -z "$CFIP" ]; then
 	/usr/bin/curl -s https://www.cloudflare.com/api_json.html -F "tkn=$TKN" -F "email=$EMAIL" -F "a=rec_new" -F "z=$Z" -F "type=A" -F "name=$NAME" -F "content=$MYIP" -F "ttl=$TTL" -F "service_mode=$MODE" > $DIR/json.$Z.$NAME
 	ID=`/usr/bin/curl -s http://www.mattfreitag.com/ip/ -F "option=2" -F "file=@$DIR/json.$Z.$NAME"`
-	rm -f $DIR/out.tmp
+	rm -f $DIR/json.$Z.$NAME
 	echo $ID > $DIR/rec_id.$Z.$NAME
 	echo $CFIP > $DIR/ip.$Z.$NAME
 
