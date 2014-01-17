@@ -52,7 +52,7 @@ else
 	/usr/bin/curl -s https://www.cloudflare.com/api_json.html -F "tkn=$TKN" -F "email=$EMAIL" -F "a=rec_load_all" -F "z=$Z" > $DIR/json.$Z.$NAME
 	ID=`/usr/bin/curl -s http://www.mattfreitag.com/ip/ -F "option=1" -F "file=@$DIR/out.tmp" -F "host=$NAME"`
 	/usr/bin/curl -s https://www.cloudflare.com/api_json.html -F "tkn=$TKN" -F "email=$EMAIL" -F "a=rec_edit" -F "z=$Z" -F "type=A" -F "id=$ID" -F "name=$NAME" -F "content=$MYIP" -F "ttl=$TTL" -F "service_mode=$MODE"
-	rm -f $DIR/out.tmp
+	rm -f $DIR/json.$Z.$NAME
 	echo $ID > $DIR/rec_id.$Z.$NAME
 	echo $MYIP > $DIR/ip.$Z.$NAME
 fi
