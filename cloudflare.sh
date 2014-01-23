@@ -14,7 +14,7 @@ MYIP=`/usr/bin/curl -s http://www.mattfreitag.com/ip/ -F "option=0"`
 #read that file into $CFIP
 #otherwise, get it with nslookup and write it to file
 if [ -e $DIR/ip.$Z.$NAME ]; then
-	CFIP=`/bin/cat $DIR/$NAME.ip | /usr/bin/tr -d '\n'`
+	CFIP=`/bin/cat $DIR/ip.$Z.$NAME | /usr/bin/tr -d '\n'`
 else
 	CFIP=`/usr/bin/nslookup $NAME.$Z | /bin/grep "Address:" | /bin/grep -v "#53" | /bin/awk '{print $2}' | /usr/bin/tr -d '\n'`
 	echo $CFIP > $DIR/ip.$Z.$NAME
